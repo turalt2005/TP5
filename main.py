@@ -9,7 +9,7 @@ import game_state
 
 #import arcade.gui
 
-#from attack_animation import AttackType, AttackAnimation
+from attack_animation import AttackType, AttackAnimation
 
 
 SCREEN_WIDTH = 1024
@@ -18,13 +18,8 @@ SCREEN_TITLE = "Roche, papier, ciseaux"
 DEFAULT_LINE_HEIGHT = 45
 
 
-class MyGame(arcade.Window):
-   """
-   La classe principale de l'application
 
-   NOTE: Vous pouvez effacer les méthodes que vous n'avez pas besoin.
-   Si vous en avez besoin, remplacer le mot clé "pass" par votre propre code.
-   """
+class MyGame(arcade.Window):
 
    PLAYER_IMAGE_X = (SCREEN_WIDTH / 2) - (SCREEN_WIDTH / 4)
    PLAYER_IMAGE_Y = SCREEN_HEIGHT / 2.5
@@ -51,7 +46,7 @@ class MyGame(arcade.Window):
        self.player_attack_chosen = False
        self.player_won_round = None
        self.draw_round = None
-       self.game_state = game_state.GameState.NOT_STARDED
+       self.game_state = game_state.GameState.NOT_STARTED
 
    def setup(self):
        """
@@ -61,7 +56,23 @@ class MyGame(arcade.Window):
        # C'est ici que vous allez créer vos listes de sprites et vos sprites.
        # Prenez note que vous devriez attribuer une valeur à tous les attributs créés dans __init__
 
-       pass
+       self.player = arcade.Sprite('assets/faceBeard.png', 0.5)
+       self.player.center_x = 30
+       self.computer = None
+       self.players = arcade.SpriteList()
+       self.players.append(self.player)
+       self.rock = AttackAnimation(AttackType.ROCK)
+       self.rock.center_x
+       self.paper = None
+       self.scissors = None
+       self.player_score = 0
+       self.computer_score = 0
+       self.player_attack_type = {}
+       self.computer_attack_type = None
+       self.player_attack_chosen = False
+       self.player_won_round = None
+       self.draw_round = None
+       self.game_state = game_state.GameState.NOT_STARTED
 
 
 
@@ -84,7 +95,7 @@ class MyGame(arcade.Window):
        """
        Méthode utilisée pour dessiner les possibilités d'attaque de l'ordinateur
        """
-       pass
+       arcade.draw_rectangle_outline()
 
 
    def draw_scores(self):
